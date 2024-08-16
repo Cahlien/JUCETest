@@ -4,9 +4,11 @@ project(JUCETest VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
+find_package(Qt6 6.7 REQUIRED COMPONENTS Quick)
 
-qt_standard_project_setup(REQUIRES 6.5)
+add_subdirectory(JUCE/)
+
+qt_standard_project_setup(REQUIRES 6.7)
 
 qt_add_executable(appJUCETest
     main.cpp
@@ -18,7 +20,23 @@ qt_add_qml_module(appJUCETest
     QML_FILES
         Main.qml
         SOURCES controller.h controller.cpp
+        SOURCES audio_player.h audio_player.cpp
 )
+
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
+
+target_include_directories(appJUCETest PRIVATE ${GTK3_INCLUDE_DIRS})
+target_link_libraries(appJUCETest PRIVATE ${GTK3_LIBRARIES})
+
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(WEBKIT2 REQUIRED webkit2gtk-4.0)
+
+target_include_directories(appJUCETest PRIVATE ${WEBKIT2_INCLUDE_DIRS})
+target_link_libraries(appJUCETest PRIVATE ${WEBKIT2_LIBRARIES})
+
+find_package(CURL REQUIRED)
+target_link_libraries(appJUCETest PRIVATE CURL::libcurl)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
@@ -33,6 +51,13 @@ set_target_properties(appJUCETest PROPERTIES
 
 target_link_libraries(appJUCETest
     PRIVATE Qt6::Quick
+    PRIVATE Qt6::Core
+    PRIVATE juce::juce_audio_basics
+    PRIVATE juce::juce_audio_devices
+    PRIVATE juce::juce_audio_formats
+    PRIVATE juce::juce_audio_processors
+    PRIVATE juce::juce_audio_utils
+    PRIVATE juce::juce_core
 )
 
 include(GNUInstallDirs)
