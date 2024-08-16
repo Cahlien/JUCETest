@@ -1,0 +1,169 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-782b21e4e56955704d5b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "JUCETest",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint-Debug-af2bbd6408f65d8c3368.json",
+					"name" : "all_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_json-Debug-36f2826316e2a5b069a0.json",
+					"name" : "all_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_module-Debug-8216a3846549fa738553.json",
+					"name" : "all_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmltyperegistrations::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmltyperegistrations-Debug-09add57ff73864635bbb.json",
+					"name" : "all_qmltyperegistrations",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appJUCETest::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appJUCETest-Debug-6b52eed1ff3dbc954171.json",
+					"name" : "appJUCETest",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appJUCETest_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appJUCETest_autogen-Debug-e651c9640726440bed60.json",
+					"name" : "appJUCETest_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appJUCETest_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appJUCETest_autogen_timestamp_deps-Debug-ca20f0f0b80ca7d06768.json",
+					"name" : "appJUCETest_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appJUCETest_qmlimportscan::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appJUCETest_qmlimportscan-Debug-1bcd26a33cec0b43162e.json",
+					"name" : "appJUCETest_qmlimportscan",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appJUCETest_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appJUCETest_qmllint-Debug-60788162c66f2cc1a78c.json",
+					"name" : "appJUCETest_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appJUCETest_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appJUCETest_qmllint_json-Debug-6ec0232ad3a45c1255b6.json",
+					"name" : "appJUCETest_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appJUCETest_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appJUCETest_qmllint_module-Debug-3ed1f9c2692149dabce0.json",
+					"name" : "appJUCETest_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appJUCETest_qmltyperegistration::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appJUCETest_qmltyperegistration-Debug-97afded9987d5a652384.json",
+					"name" : "appJUCETest_qmltyperegistration",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appJUCETest_tooling::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appJUCETest_tooling-Debug-c8704803302a8b7b9cf2.json",
+					"name" : "appJUCETest_tooling",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/storage/shared/QtCreatorProjects/JUCETest/build/Desktop_Qt_6_7_2-Debug",
+		"source" : "/storage/shared/QtCreatorProjects/JUCETest"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

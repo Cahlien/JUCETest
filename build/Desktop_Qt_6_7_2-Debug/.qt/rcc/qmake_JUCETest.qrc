@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/qt/qml/JUCETest">
+    <file alias="qmldir">/storage/shared/QtCreatorProjects/JUCETest/build/Desktop_Qt_6_7_2-Debug/JUCETest/qmldir</file>
+  </qresource>
+</RCC>
+
