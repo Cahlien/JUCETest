@@ -1,2 +1,0 @@
-set(__QT_DEPLOY_TARGET_appJUCETest_FILE /storage/shared/QtCreatorProjects/JUCETest/build/Desktop_Qt_6_7_2-Debug/appJUCETest)
-set(__QT_DEPLOY_TARGET_appJUCETest_TYPE EXECUTABLE)
