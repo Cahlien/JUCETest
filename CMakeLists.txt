@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.16)
 
 project(JUCETest VERSION 0.1 LANGUAGES CXX)
-
+add_compile_definitions(JUCE_USE_MP3AUDIOFORMAT=1)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 6.7 REQUIRED COMPONENTS Quick)
+find_package(Qt6 6.7 REQUIRED COMPONENTS Quick Core Concurrent)
 
 add_subdirectory(JUCE/)
 
@@ -52,6 +52,7 @@ set_target_properties(appJUCETest PROPERTIES
 target_link_libraries(appJUCETest
     PRIVATE Qt6::Quick
     PRIVATE Qt6::Core
+    PRIVATE Qt6::Concurrent
     PRIVATE juce::juce_audio_basics
     PRIVATE juce::juce_audio_devices
     PRIVATE juce::juce_audio_formats

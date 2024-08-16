@@ -11,9 +11,9 @@ Window {
     width: 640
     height: 480
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("QJUCE")
 
-    property bool playing: false
+    property alias playing: controller.playing
 
     signal play(string file)
     signal stop()
@@ -52,15 +52,7 @@ Window {
             Layout.alignment: Qt.AlignCenter
             text: root.playing ? "Stop" : "Play"
             enabled: fileLabel.text !== "No file selected"
-            onClicked: () => {
-                if (!root.playing) {
-                    root.play(fileLabel.text)
-                } else {
-                    root.stop()
-                }
-
-                root.playing = !root.playing
-            }
+            onClicked: root.playing ? root.stop() : root.play(fileLabel.text)
         }
     }
 
@@ -77,6 +69,7 @@ Window {
         target: root
         function onPlay(file) {
             controller.onPlay(file)
+            playButton.text = "Stop"
         }
     }
 
@@ -84,6 +77,13 @@ Window {
         target: root
         function onStop() {
             controller.onStop()
+        }
+    }
+
+    Connections {
+        target: controller
+        function onStopped() {
+            playButton.text = "Play"
         }
     }
 }
