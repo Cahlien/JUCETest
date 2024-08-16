@@ -13,8 +13,18 @@ AudioPlayer::AudioPlayer(const QString &filename, QObject *parent)
     , m_formatManager{std::make_unique<juce::AudioFormatManager>()}
     , m_readerSource{nullptr}
     , m_transportSource{nullptr}
+    , m_reverb{std::make_unique<juce::Reverb>()}
+    , m_reverbSource{}
 {
     m_formatManager->registerBasicFormats();
+    auto params{juce::Reverb::Parameters{}};
+    params.roomSize = 0.8;
+    params.damping = 0.1;
+    params.wetLevel = 0.1;
+    params.dryLevel = 0.9;
+    params.width = 1.0;
+    params.freezeMode = false;
+    m_reverb->setParameters(params);
     auto* reader = m_formatManager->createReaderFor(juce::File{filename.toStdString()});
 
     if (reader == nullptr)
@@ -28,7 +38,8 @@ AudioPlayer::AudioPlayer(const QString &filename, QObject *parent)
     m_readerSource = std::make_unique<juce::AudioFormatReaderSource>(reader, true);
     m_transportSource = std::make_unique<juce::AudioTransportSource>();
     m_transportSource->setSource(m_readerSource.get());
-
+    m_reverbSource = std::make_unique<juce::ReverbAudioSource>(m_transportSource.get(), false);
+    m_reverbSource->setParameters(params);
     setAudioChannels(0, 2); // No input channels, 2 output channels
 }
 
@@ -117,6 +128,7 @@ void AudioPlayer::prepareToPlay(int samplesPerBlockExpected, double sampleRate)
     juce::Logger::writeToLog("Preparing to play: Samples per Block = " +
                              juce::String(samplesPerBlockExpected) + ", Sample Rate = " + juce::String(sampleRate));
     m_transportSource->prepareToPlay(samplesPerBlockExpected, sampleRate);
+    m_reverbSource->prepareToPlay(samplesPerBlockExpected, sampleRate);
 }
 
 void AudioPlayer::getNextAudioBlock(const juce::AudioSourceChannelInfo &bufferToFill)
@@ -124,7 +136,7 @@ void AudioPlayer::getNextAudioBlock(const juce::AudioSourceChannelInfo &bufferTo
     juce::Logger::writeToLog("getNextAudioBlock called.");
     if (m_readerSource != nullptr && m_transportSource != nullptr)
     {
-        m_transportSource->getNextAudioBlock(bufferToFill);
+        m_reverbSource->getNextAudioBlock(bufferToFill);
     }
     else
     {

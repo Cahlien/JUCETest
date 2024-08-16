@@ -29,6 +29,8 @@ private:
     std::unique_ptr<juce::AudioFormatManager> m_formatManager;
     std::unique_ptr<juce::AudioFormatReaderSource> m_readerSource;
     std::unique_ptr<juce::AudioTransportSource> m_transportSource;
+    std::unique_ptr<juce::Reverb> m_reverb;
+    std::unique_ptr<juce::ReverbAudioSource> m_reverbSource;
 };
 
 #endif // AUDIO_PLAYER_H
