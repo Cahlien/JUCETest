@@ -5,6 +5,9 @@
 #include <QQmlEngine>
 #include <juce_audio_formats/juce_audio_formats.h>
 #include <juce_audio_utils/juce_audio_utils.h>
+#include <juce_dsp/juce_dsp.h>
+#include <juce_audio_processors/juce_audio_processors.h>
+#include "panning_processor.h"
 
 
 class AudioPlayer : public QObject, public juce::AudioAppComponent
@@ -31,6 +34,7 @@ private:
     std::unique_ptr<juce::AudioTransportSource> m_transportSource;
     std::unique_ptr<juce::Reverb> m_reverb;
     std::unique_ptr<juce::ReverbAudioSource> m_reverbSource;
+    std::unique_ptr<PanningProcessor> m_panner;
 };
 
 #endif // AUDIO_PLAYER_H

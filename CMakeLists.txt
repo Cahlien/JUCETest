@@ -12,6 +12,8 @@ qt_standard_project_setup(REQUIRES 6.7)
 
 qt_add_executable(appJUCETest
     main.cpp
+        panning_processor.cpp
+        panning_processor.h
 )
 
 qt_add_qml_module(appJUCETest
@@ -59,6 +61,7 @@ target_link_libraries(appJUCETest
     PRIVATE juce::juce_audio_processors
     PRIVATE juce::juce_audio_utils
     PRIVATE juce::juce_core
+    PRIVATE juce::juce_dsp
 )
 
 include(GNUInstallDirs)

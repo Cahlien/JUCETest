@@ -15,6 +15,7 @@ AudioPlayer::AudioPlayer(const QString &filename, QObject *parent)
     , m_transportSource{nullptr}
     , m_reverb{std::make_unique<juce::Reverb>()}
     , m_reverbSource{}
+    , m_panner{std::make_unique<PanningProcessor>()}
 {
     m_formatManager->registerBasicFormats();
     auto params{juce::Reverb::Parameters{}};
@@ -25,6 +26,7 @@ AudioPlayer::AudioPlayer(const QString &filename, QObject *parent)
     params.width = 1.0;
     params.freezeMode = false;
     m_reverb->setParameters(params);
+    m_panner->setPan(-1.0f);
     auto* reader = m_formatManager->createReaderFor(juce::File{filename.toStdString()});
 
     if (reader == nullptr)
@@ -129,6 +131,7 @@ void AudioPlayer::prepareToPlay(int samplesPerBlockExpected, double sampleRate)
                              juce::String(samplesPerBlockExpected) + ", Sample Rate = " + juce::String(sampleRate));
     m_transportSource->prepareToPlay(samplesPerBlockExpected, sampleRate);
     m_reverbSource->prepareToPlay(samplesPerBlockExpected, sampleRate);
+    m_panner->prepareToPlay(sampleRate, samplesPerBlockExpected);
 }
 
 void AudioPlayer::getNextAudioBlock(const juce::AudioSourceChannelInfo &bufferToFill)
@@ -137,6 +140,13 @@ void AudioPlayer::getNextAudioBlock(const juce::AudioSourceChannelInfo &bufferTo
     if (m_readerSource != nullptr && m_transportSource != nullptr)
     {
         m_reverbSource->getNextAudioBlock(bufferToFill);
+        juce::dsp::AudioBlock<float> audioBlock(*bufferToFill.buffer);
+        juce::dsp::ProcessContextReplacing<float> context(audioBlock);
+        // Create an empty MidiBuffer (if not used) to pass to processBlock
+        juce::MidiBuffer midiMessages;
+
+        // Call the custom processBlock method
+        m_panner->processBlock(*bufferToFill.buffer, midiMessages);
     }
     else
     {
