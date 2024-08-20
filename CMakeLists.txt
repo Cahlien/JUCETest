@@ -1,10 +1,20 @@
 cmake_minimum_required(VERSION 3.16)
 
 project(JUCETest VERSION 0.1 LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS ON)
+set(CMAKE_CXX_COMPILER /usr/bin/g++ CACHE STRING "C++ compiler" FORCE)
+set(CMAKE_C_COMPILER gcc)
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 add_compile_definitions(JUCE_USE_MP3AUDIOFORMAT=1)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 6.7 REQUIRED COMPONENTS Quick Core Concurrent)
+find_package(Qt6 REQUIRED COMPONENTS Quick Core Concurrent)
+
 
 add_subdirectory(JUCE/)
 
@@ -26,19 +36,19 @@ qt_add_qml_module(appJUCETest
 )
 
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(GTK3 REQUIRED gtk+-3.0)
+target_include_directories(appJUCETest PRIVATE ${PkConfig_INCLUDE_DIRS})
+target_link_libraries(appJUCETest PRIVATE ${PkConfig_LIBRARIES})
+find_package(CURL REQUIRED)
+target_include_directories(appJUCETest PRIVATE ${CURL_INCLUDE_DIRS})
+target_link_libraries(appJUCETest PRIVATE CURL::libcurl)
+find_package(gtk REQUIRED)
+target_include_directories(appJUCETest PRIVATE ${GTK_INCLUDE_DIRS})
+target_link_libraries(appJUCETest PRIVATE ${GTK_LIBRARIES})
 
-target_include_directories(appJUCETest PRIVATE ${GTK3_INCLUDE_DIRS})
-target_link_libraries(appJUCETest PRIVATE ${GTK3_LIBRARIES})
-
-find_package(PkgConfig REQUIRED)
 pkg_check_modules(WEBKIT2 REQUIRED webkit2gtk-4.0)
 
 target_include_directories(appJUCETest PRIVATE ${WEBKIT2_INCLUDE_DIRS})
 target_link_libraries(appJUCETest PRIVATE ${WEBKIT2_LIBRARIES})
-
-find_package(CURL REQUIRED)
-target_link_libraries(appJUCETest PRIVATE CURL::libcurl)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
