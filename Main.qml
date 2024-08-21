@@ -47,7 +47,7 @@ Window {
                 Label {
                     id: volumeLabel
                     Layout.alignment: Qt.AlignCenter
-                    text: "Volume"
+                    text: "Gain"
                 }
 
                 Slider {
