@@ -1,5 +1,0 @@
-module JUCETest
-typeinfo appJUCETest.qmltypes
-prefer :/qt/qml/JUCETest/
-Main 1.0 Main.qml
-

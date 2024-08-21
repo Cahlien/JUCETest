@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/qt/qml/JUCETest/">
-    <file alias="Main.qml">/storage/shared/QtCreatorProjects/JUCETest/Main.qml</file>
-  </qresource>
-</RCC>
-

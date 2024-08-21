@@ -1,1 +1,0 @@
-/storage/shared/QtCreatorProjects/JUCETest/build/Desktop_Qt_6_7_2-Debug/appJUCETest_autogen/include/../EWIEGA46WW/moc_controller.cpp.json
