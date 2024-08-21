@@ -45,10 +45,13 @@ find_package(gtk REQUIRED)
 target_include_directories(appJUCETest PRIVATE ${GTK_INCLUDE_DIRS})
 target_link_libraries(appJUCETest PRIVATE ${GTK_LIBRARIES})
 
-pkg_check_modules(WEBKIT2 REQUIRED webkit2gtk-4.0)
-
-target_include_directories(appJUCETest PRIVATE ${WEBKIT2_INCLUDE_DIRS})
-target_link_libraries(appJUCETest PRIVATE ${WEBKIT2_LIBRARIES})
+# add check for linux os
+if(UNIX AND NOT APPLE)
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(WEBKIT2 REQUIRED webkit2gtk-4.0)
+    target_include_directories(appJUCETest PRIVATE ${WEBKIT2_INCLUDE_DIRS})
+    target_link_libraries(appJUCETest PRIVATE ${WEBKIT2_LIBRARIES})
+endif()
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
