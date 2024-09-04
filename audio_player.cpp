@@ -50,7 +50,9 @@ AudioPlayer::AudioPlayer(const QString &filename, QObject *parent)
     m_transportSource->setSource(m_readerSource.get());
     m_reverbSource = std::make_unique<juce::ReverbAudioSource>(m_transportSource.get(), false);
     m_reverbSource->setParameters(params);
-    setAudioChannels(0, 2); // No input channels, 2 output channels
+    // get default audio output configuration
+    auto setup{deviceManager.getAudioDeviceSetup()};
+    setAudioChannels(setup.inputChannels.toInteger(), setup.outputChannels.toInteger());
 
     connect(this, &AudioPlayer::wetLevelChanged, this, &AudioPlayer::onReverbParametersChanged);
     connect(this, &AudioPlayer::dryLevelChanged, this, &AudioPlayer::onReverbParametersChanged);
